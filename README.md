@@ -2,7 +2,8 @@
 
 ## What happens when I run `ddo COMMAND`?
 
-* `ddo` runs `docker build` if necessary (the image wasn't built yet, or the Dockerfile has changed)
+* `ddo` runs `docker build` if necessary (the image wasn't built yet, or the
+  Dockerfile has changed)
 * `ddo` maps the working directory (where `Dockerfile` resides) to a volume
 * `ddo` runs the `COMMAND` relative to the working directory using `docker run`
 
@@ -10,7 +11,8 @@
 
 * `ddo` requires you have a `Dockerfile` somewhere up the tree
 * `ddo` requires that `Dockerfile` to define `ENTRYPOINT ["/bin/sh", "-c"]`
-* `ddo` assumes that `Dockerfile` defines `WORKDIR /workspace`
+* `ddo` assumes that `Dockerfile` defines `WORKDIR` to a desired working
+  location
 * `ddo` on OSX requires coreutils:
 
     `$ brew install coreutils`
@@ -33,7 +35,7 @@ Create a `Dockerfile` that encapsulates your build environment, e.g.:
 And then simply run this to build your source inside the build environment:
 
     ~/myproject $ cd build
-	~/myproject/build $ ddo make
+    ~/myproject/build $ ddo make
     ~/myproject/build $
     ddo: found Dockerfile in /home/benzaita/myproject
     ddo: running `docker build` in /home/benzaita/myproject
@@ -46,7 +48,8 @@ And then simply run this to build your source inside the build environment:
 
 ## Passing Arguments to `docker run`
 
-You can pass any argument to `docker run` by separating it from the command to run, e.g.:
+You can pass any argument to `docker run` by separating it from the command to
+run, e.g.:
 
     ddo make -- -v /path:/path
 
